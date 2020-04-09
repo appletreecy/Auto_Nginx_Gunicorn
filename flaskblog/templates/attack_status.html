@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Attack Status Page:</h1>
+    <p>
+		<a class="btn btn-primary btn-xs" href="{{ url_for('main.attack_stop') }}">Stop the Current BPS attack!</a>
+	</p>
+{% endblock content %}

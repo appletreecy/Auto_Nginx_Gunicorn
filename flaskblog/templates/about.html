@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Attack Page:</h1>
+    <p>
+	    <a class="btn btn-primary btn-xs" href="{{ url_for('main.attack') }}">Attack 1 - CL Demo</a>
+	</p>
+	<p>
+	    <a class="btn btn-primary btn-xs" href="{{ url_for('main.attack2') }}">Attack 2</a>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-xs" href="{{ url_for('main.attack3') }}">Attack 3 - Call Linux Scripts</a>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-xs" href="{{ url_for('main.attack4') }}">Attack 4 - Call one simple BPS profile</a>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-xs" href="{{ url_for('main.attack5') }}">Attack 5 - Call one simple BPS profile -checkout</a>
+	</p>
+{% endblock content %}
