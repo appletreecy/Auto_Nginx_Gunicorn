@@ -22,6 +22,10 @@ def home():
 @main.route("/about")
 def about():
     return render_template('about.html', title='About')
+
+@main.route("/about2")
+def about2():
+    return render_template('about2.html', title='About2')
 	
 
 @main.route("/attack/1", methods=['GET', 'POST'])

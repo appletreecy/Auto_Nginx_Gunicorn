@@ -26,7 +26,15 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('main.about') }}">Attack Page</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Attack Page
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ url_for('main.about') }}">Attack Page1(1-15)</a>
+                  <a class="dropdown-item" href="{{ url_for('main.about2') }}">Attack Page2(15-30)</a>
+                </div>
+              </li>
               <a class="nav-item nav-link" href="{{ url_for('main.attack_status') }}">Attack Status</a>
             </div>
             <!-- Navbar Right Side -->

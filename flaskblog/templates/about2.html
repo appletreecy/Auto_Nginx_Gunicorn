@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Attack Page:</h1>
+    <p>
+	    <a class="btn btn-primary btn-xs" onclick="document.getElementById('demo1').innerHTML = '<h6><font color=white>Attack 1 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.attack') }}">Attack 1 - CL Demo</a>
+	    <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="demo1"></div>
+	</p>
+	<p>
+	    <a class="btn btn-primary btn-xs" href="{{ url_for('main.attack2') }}">Attack 2</a>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-xs" onclick="document.getElementById('demo').innerHTML = 'Attack 3 starts launching!';" href="{{ url_for('main.attack3') }}">Attack 13 - Call Linux Scripts</a>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-xs" onclick="document.getElementById('demo4').innerHTML = '<h5><font color=white>Attack 4 starts launching!</font></h5>';" href="{{ url_for('main.attack4') }}">Attack 4 - Call one simple BPS profile</a>
+	        <div class="badge badge-danger text-wrap" style="width: 18rem; height: 2rem;"  id="demo4"></div>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-xs" href="{{ url_for('main.attack5') }}">Attack 5 - Call one simple BPS profile -checkout</a>
+	</p>
+{% endblock content %}
