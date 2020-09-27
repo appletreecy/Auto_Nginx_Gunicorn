@@ -11,6 +11,143 @@ import re
 main = Blueprint('main', __name__)
 
 
+def launchBpsAttack(attackName):
+    bps = BPS('172.16.14.28', 'admin', 'admin')
+    bps.login()
+    # login
+    # showing current port reservation state
+    bps.portsState()
+    # reserving the ports.
+    bps.reservePorts(slot=1, portList=[0, 1, 2, 3], group=1, force=True)
+    # running the canned test 'AppSim' using group 1
+    # please note the runid generated. It will be used for many more functionalities
+    runid = bps.runTest(modelname=attackName, group=1)
+    # showing progress and current statistics
+    progress = 0
+    while (progress < 100):
+        progress = bps.getRTS(runid)
+        time.sleep(1)
+    # showing the test result (Pass/Fail)
+    # a sleep is put here because we do not immediately get the test results.
+    # inserting a sleep to allow for the data to be stored in the database before retrieval
+    time.sleep(1)
+    bps.getTestResult(runid)
+
+    # logging out
+    bps.logout()
+
+@main.route("/attack/apt1", methods=['GET', 'POST'])
+@login_required
+def apt1():
+    form = PostForm()
+    launchBpsAttack("Victor-Zeus-CNC-Sourcefire")
+    time.sleep(1)
+    launchBpsAttack("Victor-SSH-DLP-Attack")
+
+    flash('Your APT 1 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt2", methods=['GET', 'POST'])
+@login_required
+def apt2():
+    form = PostForm()
+    launchBpsAttack("Victor-ESA-Bad-Keyword")
+    time.sleep(1)
+    launchBpsAttack("Victor-WSA-Malware-Web-Site")
+    time.sleep(1)
+    launchBpsAttack("Victor-Malware-ZPACK")
+
+    flash('Your APT 2 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt3", methods=['GET', 'POST'])
+@login_required
+def apt3():
+    form = PostForm()
+    launchBpsAttack("Victor-Web-Attack")
+    time.sleep(1)
+    launchBpsAttack("Victor-ESA-Credit-Card")
+    time.sleep(1)
+    launchBpsAttack("Victor-IRC-DLP")
+
+    flash('Your APT 3 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt4", methods=['GET', 'POST'])
+@login_required
+def apt4():
+    form = PostForm()
+    launchBpsAttack("Victor-Adobe-Malware-Server-Client")
+    time.sleep(1)
+    launchBpsAttack("Victor-SMB-DLP-Attack")
+
+    flash('Your APT 4 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt5", methods=['GET', 'POST'])
+@login_required
+def apt5():
+    form = PostForm()
+    launchBpsAttack("Victor-Synful-Knock-Attack")
+    time.sleep(1)
+    launchBpsAttack("Victor-DataLeak-FTP")
+
+    flash('Your APT 5 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt6", methods=['GET', 'POST'])
+@login_required
+def apt6():
+    form = PostForm()
+    launchBpsAttack("Victor-Bot-to-Botmaster-Zeus")
+    time.sleep(1)
+    launchBpsAttack("Victor-Botmaster-to-bot-IOS-Trojan")
+
+    flash('Your APT 6 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt7", methods=['GET', 'POST'])
+@login_required
+def apt7():
+    form = PostForm()
+    launchBpsAttack("Victor-Ransom-Attack")
+    time.sleep(1)
+    launchBpsAttack("Victor-Duqu-Botnet-DLP")
+
+    flash('Your APT 7 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt8", methods=['GET', 'POST'])
+@login_required
+def apt8():
+    form = PostForm()
+    launchBpsAttack("Victor-bash-attack")
+    time.sleep(1)
+    launchBpsAttack("Victor-DDOS ICMP Flood Attack")
+
+    flash('Your APT 8 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
+@main.route("/attack/apt9", methods=['GET', 'POST'])
+@login_required
+def apt9():
+    form = PostForm()
+    launchBpsAttack("Victor-Carbanak-Attack")
+    time.sleep(1)
+    launchBpsAttack("Victor-DataLeak-HTTPS")
+
+    flash('Your APT 9 has been launched!', 'success')
+
+    return render_template('apt.html', title='test', form=form)
+
 @main.route("/")
 @main.route("/home")
 def home():
@@ -32,6 +169,10 @@ def about2():
 @main.route("/about_demo")
 def about_demo():
     return render_template('about_demo.html', title='About_demo')
+
+@main.route("/apt")
+def apt():
+    return render_template('apt.html', title='apt')
 
 
 @main.route("/attack/1", methods=['GET', 'POST'])

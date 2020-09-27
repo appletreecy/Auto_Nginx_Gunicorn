@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>APT Attack Page:</h1>
+   <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt1').innerHTML =
+        '<h6><font color=white>APT1 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt1') }}">
+        APT1 - Zeus CNC Sourcefire</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt1"></div>
+    </p>
+
+   <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt2').innerHTML =
+        '<h6><font color=white>APT2 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt2') }}">
+        APT2 - ESA-WSA-ZPACK</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt2"></div>
+    </p>
+
+   <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt3').innerHTML =
+        '<h6><font color=white>APT3 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt3') }}">
+        APT3 - Web-ESA-IRC-DLP</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt3"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt4').innerHTML =
+        '<h6><font color=white>APT4 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt4') }}">
+        APT4 - Adobe-Malware-SMB-DLP</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt4"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt5').innerHTML =
+        '<h6><font color=white>APT5 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt5') }}">
+        APT5 - Synful-Knock-FTP-DLP</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt5"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" href="{{ url_for('main.apt6') }}">APT6 - Zeus-CNC-Sourcefire-Trojan</a>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt6').innerHTML =
+        '<h6><font color=white>APT6 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt6') }}">
+        APT6 - Zeus-CNC-Sourcefire-Trojan</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt6"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt7').innerHTML =
+        '<h6><font color=white>APT7 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt7') }}">APT7 - Ransom-Dataleak-HTTP</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt7"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt8').innerHTML =
+        '<h6><font color=white>APT8 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt8') }}">APT8 - Bash-ICMP-Flood</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt8"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-xs" onclick="document.getElementById('apt9').innerHTML =
+        '<h6><font color=white>APT9 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.apt9') }}">APT9 - Carbanak-Malware-Dataleak-HTTPS</a>
+        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="apt9"></div>
+    </p>
+
+
+
+{% endblock content %}
