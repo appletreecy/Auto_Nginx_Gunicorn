@@ -175,7 +175,7 @@ def netflow_demo():
     print(output)
 
 #    remote_conn.send("/usr/bin/python3 /root/temp/test1.py")
-    remote_conn.send("/root/netflow_script.sh \r")
+    remote_conn.send("/root/netflow_script.sh")
     output1 = remote_conn.recv(2000)
     time.sleep(1)
     print(output1)
