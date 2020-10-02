@@ -165,20 +165,21 @@ def apt9():
 def netflow_demo():
     form = PostForm()
     ip = '172.16.14.38'
-    port = 22
     username = 'root'
     password = 'toor'
-    cmd = 'netflow_script.sh'
+    remote_conn_pre = paramiko.SSHClient()
+    remote_conn_pre.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    remote_conn_pre.connect(ip, username=username, password=password, look_for_keys=True, allow_agent=False)
+    remote_conn = remote_conn_pre.invoke_shell()
+    output = remote_conn.recv(1000)
+    print(output)
 
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(ip, port, username, password)
-
-    stdin, stdout, stderr = ssh.exec_command(cmd)
-    outlines = stdout.readlines()
-    resp = ''.join(outlines)
-    print(resp)
-    flash(resp, 'success')
+#    remote_conn.send("/usr/bin/python3 /root/temp/test1.py")
+    remote_conn.send("uname -a\r")
+    output1 = remote_conn.recv(2000)
+    time.sleep(1)
+    print(output1)
+    flash(output1, 'success')
 
     return render_template('about_demo.html', title='test', form=form)
 
