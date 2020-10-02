@@ -36,6 +36,7 @@ def launchBpsAttack(attackName):
     # logging out
     bps.logout()
 
+
 @main.route("/attack/apt1", methods=['GET', 'POST'])
 @login_required
 def apt1():
@@ -47,6 +48,7 @@ def apt1():
     flash('Your APT 1 has been launched!', 'success')
 
     return render_template('apt.html', title='test', form=form)
+
 
 @main.route("/attack/apt2", methods=['GET', 'POST'])
 @login_required
@@ -62,6 +64,7 @@ def apt2():
 
     return render_template('apt.html', title='test', form=form)
 
+
 @main.route("/attack/apt3", methods=['GET', 'POST'])
 @login_required
 def apt3():
@@ -76,6 +79,7 @@ def apt3():
 
     return render_template('apt.html', title='test', form=form)
 
+
 @main.route("/attack/apt4", methods=['GET', 'POST'])
 @login_required
 def apt4():
@@ -87,6 +91,7 @@ def apt4():
     flash('Your APT 4 has been launched!', 'success')
 
     return render_template('apt.html', title='test', form=form)
+
 
 @main.route("/attack/apt5", methods=['GET', 'POST'])
 @login_required
@@ -100,6 +105,7 @@ def apt5():
 
     return render_template('apt.html', title='test', form=form)
 
+
 @main.route("/attack/apt6", methods=['GET', 'POST'])
 @login_required
 def apt6():
@@ -111,6 +117,7 @@ def apt6():
     flash('Your APT 6 has been launched!', 'success')
 
     return render_template('apt.html', title='test', form=form)
+
 
 @main.route("/attack/apt7", methods=['GET', 'POST'])
 @login_required
@@ -124,6 +131,7 @@ def apt7():
 
     return render_template('apt.html', title='test', form=form)
 
+
 @main.route("/attack/apt8", methods=['GET', 'POST'])
 @login_required
 def apt8():
@@ -136,6 +144,7 @@ def apt8():
 
     return render_template('apt.html', title='test', form=form)
 
+
 @main.route("/attack/apt9", methods=['GET', 'POST'])
 @login_required
 def apt9():
@@ -147,6 +156,32 @@ def apt9():
     flash('Your APT 9 has been launched!', 'success')
 
     return render_template('apt.html', title='test', form=form)
+
+# This the part for the Demo Routes
+
+
+@main.route("/attack/netflow_demo", methods=['GET', 'POST'])
+@login_required
+def netflow_demo():
+    form = PostForm()
+    ip = '172.16.14.38'
+    port = 22
+    username = 'root'
+    password = 'toor'
+    cmd = 'netflow_script.sh'
+
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(ip, port, username, password)
+
+    stdin, stdout, stderr = ssh.exec_command(cmd)
+    outlines = stdout.readlines()
+    resp = ''.join(outlines)
+    print(resp)
+    flash(resp, 'success')
+
+    return render_template('about_demo.html', title='test', form=form)
+
 
 @main.route("/")
 @main.route("/home")
@@ -169,6 +204,7 @@ def about2():
 @main.route("/about_demo")
 def about_demo():
     return render_template('about_demo.html', title='About_demo')
+
 
 @main.route("/apt")
 def apt():
@@ -208,7 +244,7 @@ def attack():
 
     print('end')
 
-    #Second test: Steve-WebSec-Test
+    # Second test: Steve-WebSec-Test
     runid = bps.runTest(modelname='Steve-WebSec-Test', group=1)
     # showing progress and current statistics
     progress = 0
@@ -223,7 +259,6 @@ def attack():
     # inserting a sleep to allow for the data to be stored in the database before retrieval
     time.sleep(2)
     bps.getTestResult(runid)
-
 
     # Second Test
     runid = bps.runTest(modelname='Victor-Malware-Hash-Test', group=1)
