@@ -206,6 +206,96 @@ def threatIntel_demo():
     return render_template('about_demo.html', title='test', form=form)
 
 
+@main.route("/attack/cl_bps_demo", methods=['GET', 'POST'])
+@login_required
+def cl_bps_demo():
+    form = PostForm()
+#    flash('Your attack has been started!', 'success')
+    bps = BPS('172.16.14.28', 'admin', 'admin')
+    bps.login()
+    # login
+    # showing current port reservation state
+    bps.portsState()
+    # reserving the ports.
+    bps.reservePorts(slot=1, portList=[0, 1, 2, 3], group=1, force=True)
+    # running the canned test 'AppSim' using group 1
+    # please note the runid generated. It will be used for many more functionalities
+    runid = bps.runTest(modelname='Victor-ESA-Test-Spam', group=1)
+    # showing progress and current statistics
+    progress = 0
+    try:
+        while (progress < 100):
+            progress = bps.getRTS(runid)
+            time.sleep(1)
+    except:
+        print("An exception occurred")
+    # showing the test result (Pass/Fail)
+    # a sleep is put here because we do not immediately get the test results.
+    # inserting a sleep to allow for the data to be stored in the database before retrieval
+    time.sleep(1)
+    bps.getTestResult(runid)
+    progress = 100
+    print('start')
+
+    print('end')
+
+    # Second test: Steve-WebSec-Test
+    runid = bps.runTest(modelname='Steve-WebSec-Test', group=1)
+    # showing progress and current statistics
+    progress = 0
+    try:
+        while (progress < 100):
+            progress = bps.getRTS(runid)
+            time.sleep(1)
+    except:
+        print("An exception occurred")
+    # showing the test result (Pass/Fail)
+    # a sleep is put here because we do not immediately get the test results.
+    # inserting a sleep to allow for the data to be stored in the database before retrieval
+    time.sleep(2)
+    bps.getTestResult(runid)
+
+    # Second Test
+    runid = bps.runTest(modelname='Victor-Malware-Hash-Test', group=1)
+    # showing progress and current statistics
+    progress = 0
+    try:
+        while (progress < 100):
+            progress = bps.getRTS(runid)
+            time.sleep(1)
+    except:
+        print("An exception occurred")
+    # showing the test result (Pass/Fail)
+    # a sleep is put here because we do not immediately get the test results.
+    # inserting a sleep to allow for the data to be stored in the database before retrieval
+    time.sleep(10)
+    bps.getTestResult(runid)
+    progress = 100
+    print('start')
+
+    print('end')
+
+    # Third Test
+    runid = bps.runTest(modelname='Cyber-Landing-Traffic', group=1)
+    # showing progress and current statistics
+    progress1 = 0
+    try:
+        while (progress1 < 100):
+            progress1 = bps.getRTS(runid)
+            time.sleep(1)
+    except:
+        print("Second exception occurred")
+
+    time.sleep(1)
+    bps.getTestResult(runid)
+
+    # logging out
+    bps.logout()
+    flash('Your attack CL BPS Demo has been launched!', 'success')
+
+    return render_template('about_demo.html', title='test', form=form)
+
+
 @main.route("/")
 @main.route("/home")
 def home():
