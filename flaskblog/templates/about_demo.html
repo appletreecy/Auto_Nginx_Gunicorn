@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Attack Page:</h1>
+    <h1>Attack Demo Page:</h1>
     <p>
         <a class="btn btn-primary btn-xs" href="{{ url_for('main.netflow_demo') }}">Demo - Netflow</a>
     </p>
@@ -8,8 +8,8 @@
    <p>
         <a class="btn btn-primary btn-xs" onclick="document.getElementById('threatIntel').innerHTML =
         '<h6><font color=white>ThreatIntel starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.threatIntel_demo') }}">
-        Demo - ThreatIntel</a>
-        <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="threatIntel"></div>
+        Demo - Threat Intel</a>
+        <div class="badge badge-danger text-wrap" style="width: 36rem; height: 2rem;"  id="threatIntel"></div>
     </p>
 
     <p>
