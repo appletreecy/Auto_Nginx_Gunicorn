@@ -10,9 +10,11 @@ import re
 
 main = Blueprint('main', __name__)
 
+bpspassword = 'cyberland123'
+
 
 def launchBpsAttack(attackName):
-    bps = BPS('172.16.14.28', 'admin', 'admin')
+    bps = BPS('172.16.14.28', 'admin', bpspassword)
     bps.login()
     # login
     # showing current port reservation state
@@ -211,7 +213,7 @@ def threatIntel_demo():
 def cl_bps_demo():
     form = PostForm()
 #    flash('Your attack has been started!', 'success')
-    bps = BPS('172.16.14.28', 'admin', 'admin')
+    bps = BPS('172.16.14.28', 'admin', bpspassword)
     bps.login()
     # login
     # showing current port reservation state
@@ -520,7 +522,7 @@ def attack6():
 @login_required
 def attack_status():
     form = PostForm()
-    bps = BPS('172.16.14.28', 'admin', 'admin')
+    bps = BPS('172.16.14.28', 'admin', bpspassword)
     bps.login()
     ret = bps.runningTestInfo()
     if len(ret) == 2:
