@@ -207,6 +207,28 @@ def threatIntel_demo():
 
     return render_template('about_demo.html', title='test', form=form)
 
+@main.route("/attack/waf_attack1", methods=['GET', 'POST'])
+@login_required
+def waf_attack1():
+    form = PostForm()
+    ip = '172.16.14.38'
+    port = 22
+    username = 'root'
+    password = 'toor'
+    cmd = '/root/wap/wap_case1.sh'
+
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(ip, port, username, password)
+
+    stdin, stdout, stderr = ssh.exec_command(cmd)
+    outlines = stdout.readlines()
+    resp = ''.join(outlines)
+    print(resp)
+    flash(resp, 'success')
+
+    return render_template('about_demo.html', title='test', form=form)
+
 
 @main.route("/attack/cl_bps_demo", methods=['GET', 'POST'])
 @login_required
@@ -456,7 +478,7 @@ def attack3():
 def attack4():
     form = PostForm()
 #    flash('Your attack has been started!', 'success')
-    bps = BPS('172.16.14.28', 'admin', 'admin')
+    bps = BPS('172.16.14.28', 'admin', 'cyberland123')
     bps.login()
     # login
     # showing current port reservation state

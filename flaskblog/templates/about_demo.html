@@ -19,5 +19,8 @@
 	    <a class="btn btn-primary btn-xs" onclick="document.getElementById('demo1').innerHTML = '<h6><font color=white>Attack 1 starts launching......Please do not close this page!</font></h6>';" href="{{ url_for('main.cl_bps_demo') }}">Demo1b - CL Demo</a>
 	    <div class="badge badge-danger text-wrap" style="width: 28rem; height: 2rem;"  id="demo1"></div>
 	</p>
+    <p>
+        <a class="btn btn-primary btn-xs" href="{{ url_for('main.waf_attack1') }}">WAF ATTACK1 - Demo</a>
+    </p>
 
 {% endblock content %}
